@@ -9,7 +9,7 @@
 
 ## 在线体验
 
-**[https://ss-resizer.vercel.app](https://ss-resizer.vercel.app)**
+**[https://shot-fit.vercel.app](https://shot-fit.vercel.app)**
 
 免费部署在 Vercel，无需安装，打开即用。
 
