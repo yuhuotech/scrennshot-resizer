@@ -16,4 +16,5 @@ export const RESOLUTIONS: Resolution[] = [
   { label: 'iPhone 横屏 (2688×1242)', width: 2688, height: 1242 },
   { label: 'iPhone 竖屏 Pro (1284×2778)', width: 1284, height: 2778 },
   { label: 'iPhone 横屏 Pro (2778×1284)', width: 2778, height: 1284 },
+  { label: '小米竖屏 (1080×1920)', width: 1080, height: 1920 },
 ]
