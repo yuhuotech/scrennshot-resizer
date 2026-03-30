@@ -5,7 +5,8 @@ import UploadZone from '@/components/UploadZone'
 import ImageList from '@/components/ImageList'
 import ResolutionSelector from '@/components/ResolutionSelector'
 import FormatSelector from '@/components/FormatSelector'
-import { UploadedImage, Resolution, RESOLUTIONS, OutputFormat, OUTPUT_FORMATS } from '@/lib/types'
+import FitModeSelector from '@/components/FitModeSelector'
+import { UploadedImage, Resolution, RESOLUTIONS, OutputFormat, OUTPUT_FORMATS, FitMode } from '@/lib/types'
 import { resizeImage } from '@/lib/resizeImage'
 import { buildOutputFilename, buildZipFilename, downloadAsZip } from '@/lib/buildZip'
 
@@ -13,6 +14,7 @@ export default function Home() {
   const [images, setImages] = useState<UploadedImage[]>([])
   const [resolution, setResolution] = useState<Resolution>(RESOLUTIONS[0])
   const [outputFormat, setOutputFormat] = useState<OutputFormat>(OUTPUT_FORMATS[0])
+  const [fitMode, setFitMode] = useState<FitMode>('cover')
   const [processing, setProcessing] = useState(false)
 
   function handleFilesAccepted(files: File[]) {
@@ -43,7 +45,7 @@ export default function Home() {
 
       for (const img of images) {
         try {
-          const blob = await resizeImage(img.file, resolution.width, resolution.height, outputFormat.mimeType)
+          const blob = await resizeImage(img.file, resolution.width, resolution.height, outputFormat.mimeType, fitMode)
           const filename = buildOutputFilename(img.file.name, resolution.width, resolution.height, seen, outputFormat.ext)
           results.push({ blob, filename })
         } catch {
@@ -81,6 +83,8 @@ export default function Home() {
       <ImageList images={images} onRemove={handleRemove} />
 
       <ResolutionSelector selected={resolution} onChange={setResolution} />
+
+      <FitModeSelector selected={fitMode} onChange={setFitMode} />
 
       <FormatSelector selected={outputFormat} onChange={setOutputFormat} />
 

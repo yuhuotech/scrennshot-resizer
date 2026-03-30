@@ -33,3 +33,18 @@ export const RESOLUTIONS: Resolution[] = [
 ]
 
 export const RESOLUTION_GROUPS = [...new Set(RESOLUTIONS.map((r) => r.group!))]
+
+export type FitMode = 'cover' | 'stretch' | 'contain' | 'blur-fill'
+
+export interface FitModeOption {
+  value: FitMode
+  label: string
+  description: string
+}
+
+export const FIT_MODES: FitModeOption[] = [
+  { value: 'cover', label: '智能裁切', description: '等比缩放并居中裁切，无变形但可能裁掉边缘' },
+  { value: 'stretch', label: '拉伸填充', description: '强制拉伸到目标尺寸，可能变形' },
+  { value: 'contain', label: '留白填充', description: '等比缩放保留完整画面，空白区域填白色' },
+  { value: 'blur-fill', label: '模糊填充', description: '等比缩放保留完整画面，空白区域用模糊背景填充' },
+]
